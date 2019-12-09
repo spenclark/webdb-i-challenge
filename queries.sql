@@ -1,67 +1,17 @@
--- all columns and all rows from the customers table
-SELECT * FROM customers
+-- Database Queries
 
--- we can pick the columns we want to see
-SELECT CustomerID, CustomerName, Country, City
-FROM customers
+-- Find all customers with postal code 1010
 
--- filter the rows
-SELECT CustomerID, CustomerName, Country, City
-FROM customers
-where country = 'Germany'
+-- Find the phone number for the supplier with the id 11
 
--- sorting
-SELECT CustomerID, CustomerName, Country, City
-FROM customers
-order by country, city
+-- List first 10 orders placed, sorted descending by the order date
 
--- descending by country and ascending (the default) by city
-SELECT CustomerID, CustomerName, Country, City
-FROM customers
-order by country desc, city
+-- Find all customers that live in London, Madrid, or Brazil
 
--- contolling how many records to return
-select * 
-from products
-limit 5
+-- Add a customer record for "The Shire", the contact name is "Bilbo Baggins" the address is -"1 Hobbit-Hole" in "Bag End", postal code "111" and the country is "Middle Earth"
 
--- pagination witn order by, limit and offset
-select * 
-from products
-order by price desc
-limit 5
-offset 10
+-- Update Bilbo Baggins record so that the postal code changes to "11122"
 
--- adding records
-insert into products (productName, supplierId, categoryId, unit, price)
-values ('cake', 7, 1, 'one', 20.99)
+-- (Stretch) Find a query to discover how many different cities are stored in the Customers table. Repeats should not be double counted
 
-insert into products (productName, supplierId, categoryId, unit, price)
-values ('carrot cake', 7, 1, 'one', 20.99)
-
-insert into products (productName, supplierId, categoryId, unit, price)
-values ('cake candles', 7, 1, 'one', 20.99)
-
--- partial lookup
-SELECT * FROM [Products]
-where productName like '%cake%'
-
-SELECT * FROM [Products]
-where productName like '%cake'
-
-SELECT * FROM [Products]
-where productName like 'cake%'
-
--- updating records
-update products 
-set price = 24.99
-where productId = 79
-
--- updating multiple columns
-update products 
-set price = 24.99, unit = 'whole cake'
-where productId = 79
-
--- removing records
-delete FROM [Products] 
-where productId = 80
+-- (Stretch) Find all suppliers who have names longer than 20 characters. You can use `length(SupplierName)` to get the length of the name
