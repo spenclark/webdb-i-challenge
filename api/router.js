@@ -9,7 +9,31 @@ router.get('/', (req, res) => {
             res.status(200).json(data)
         })
         .catch(error =>{
-            res.status(500).json({ error: "Failed GET /"})
+            res.status(500).json({ error: "Failed on GET /"})
+        })
+})
+
+router.get('/:id', (req, res) => {
+    db("accounts")
+        .where({ id: req.params.id })
+        .first()
+        .then( data => {
+            res.status(200).json(data)
+        })
+        .then(error => {
+            res.status(500).json({ error: "Failed on GET /:id"})
+        })
+})
+
+router.post('/', (req,res) => {
+    const postReqBody = req.body;
+    db('accounts').insert(postReqBody, "id")
+        .then(data => {
+            const id = data[0]
+            res.status(201).json(id)
+        })
+        .catch(error => {
+            res.status(500).json({ error: "Failed on POST /:id"})
         })
 })
 module.exports = router
